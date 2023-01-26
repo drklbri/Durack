@@ -3,7 +3,6 @@ package ru.vsu.cs.shevchenko_daniil.game;
 import ru.vsu.cs.shevchenko_daniil.enums.Rank;
 import ru.vsu.cs.shevchenko_daniil.enums.Suit;
 
-import java.util.Objects;
 
 public class Card {
    private final Rank rank;
@@ -26,6 +25,8 @@ public class Card {
         return rank;
     }
 
+    
+
     public int getPower() {
         return rank.getRank();
     }
@@ -35,14 +36,14 @@ public class Card {
     }
 
     private boolean isTrump(Table table) {
-        return suit.equals(table.getTrumpCard().getSuit());
+        return suit.equals(table.getTrumpCard());
     }
 
     public boolean sameSuit(Card card){
         return suit.equals(card.getSuit());
     }
 
-    public int trueCompareTo(Card otherCard, Table table) {
+/*    public int trueCompareTo(Card otherCard, Table table) {
         int valueDifference = this.compareTo(otherCard);
         boolean thisTrump = this.isTrump(table);
         boolean otherTrump = otherCard.isTrump(table);
@@ -57,5 +58,5 @@ public class Card {
         } else {
             return -1;
         }
-    }
+    }*/
 }

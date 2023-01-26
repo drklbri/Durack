@@ -3,14 +3,11 @@ package ru.vsu.cs.shevchenko_daniil.game;
 import ru.vsu.cs.shevchenko_daniil.enums.Rank;
 import ru.vsu.cs.shevchenko_daniil.enums.Suit;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Table {
-    private List<Card> deck = new ArrayList<>();
-    private List<Card> cardsOnTable = new ArrayList<>();
+    private ArrayList<Card> deck = new ArrayList<>();
+    private Deque<Card> cardsOnTable = new ArrayDeque<>();
     private Card trumpCard;
 
     public Table() {
@@ -18,25 +15,27 @@ public class Table {
             for (Suit suit : Suit.values())
                 deck.add(new Card(rank, suit));
         }
-        searchTrumpCard();
         Collections.shuffle(deck);
     }
 
-    public List<Card> getCardsOnTable() {
+    public void setTrumpCard() {
+        trumpCard = deck.get(0);
+        deck.remove(trumpCard);
+        deck.add(trumpCard);
+    }
+
+    public Deque<Card> getCardsOnTable() {
         return cardsOnTable;
     }
 
-    public List<Card> getDeck() {
+    public ArrayList<Card> getDeck() {
         return deck;
     }
 
-    private void searchTrumpCard() {
-        trumpCard = deck.get((int) (Math.random() * 36));
-    }
 
 
-    public Card getTrumpCard() {
-        return trumpCard;
+    public Suit getTrumpCard() {
+        return trumpCard.getSuit();
     }
 
 
